@@ -48,7 +48,7 @@ export class CronModule implements OnModuleInit {
 
   
     private async scheduleCronJobs() {
-    //   cron.schedule('0 0 * * *', async () => {
+      cron.schedule('0 0 * * *', async () => {
         const users = await this.usersService.getUsers()
         const city = "hbsh"
         for (const user of users){
@@ -162,8 +162,8 @@ export class CronModule implements OnModuleInit {
         }
         
       }
-    // );
-    // }
+    );
+    }
   }
 
   function monthById(year: number, term: number, number_of_sat: number, sau_id: number): Date {
