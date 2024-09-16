@@ -6,13 +6,7 @@ const httpsAgent = new https.Agent({
   rejectUnauthorized: false
 });
 
-const proxy = axios.create({
-    proxy: {
-        host: '127.0.0.1',
-        port: 8082
-    },
-    httpsAgent 
-});
+const proxy = axios.create({});
 
 proxy.interceptors.request.use((config) => {
     config.headers['user-agent'] = 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0';
