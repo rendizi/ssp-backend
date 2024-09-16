@@ -1,8 +1,8 @@
 import * as crypto from 'crypto';
 
 const algorithm = 'aes-256-cbc'; 
-const key = crypto.randomBytes(32)
-const iv = crypto.randomBytes(16); 
+const key = Buffer.from('2f3b0e8d2f4b47c1a8e1b25f3c7d879e4d6f9c1e8e473cf97f9d4f30a7d4c8e7', 'hex');
+const iv = Buffer.from('8b79a54c2a4fbb0d6e2f6f8a574c9d2a', 'hex');
 
 export function encrypt(text: string): string {
     let cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv);

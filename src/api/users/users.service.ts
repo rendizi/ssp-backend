@@ -26,7 +26,10 @@ export class UsersService {
         type: userInformation.UserType,
         email: userInformation.Email,
         shortName: userInformation.ShortName,
-        fullName: userInformation.FullName
+        fullName: userInformation.FullName,
+        klass: userInformation.Klass,
+        school: userInformation.School,
+        photourl: userInformation.PhotoUrl
     });
     const user = await newUser.save();
 
@@ -40,4 +43,31 @@ export class UsersService {
     }
     return user;
   }
+
+  async getUsers():Promise<User[]>{
+    const users = await this.userModel.find({})
+    return users 
+  }
+  
+  async updateUser(login: string, updateData: Partial<Update>): Promise<User> {
+    const user = await this.userModel.findOneAndUpdate({ login }, updateData, {
+      new: true,
+      runValidators: true,
+    }).exec();
+    
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+}
+
+
+export interface Update{
+  password: string 
+  klass: string 
+  school: string 
+  historyLoaded: boolean
+  parallel: number
 }

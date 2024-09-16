@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './api/users/users.module';
 import { AuthModule } from './api/auth/auth.module';
 import { SmsModule } from './api/sms/sms.module';
+import { CronModule } from './api/journal/journal.module';
+import { DashboardModule } from './api/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -13,7 +15,9 @@ import { SmsModule } from './api/sms/sms.module';
     MongooseModule.forRoot(process.env.MONGO_URI || ''),
     UserModule,
     AuthModule,
-    SmsModule
+    SmsModule,
+    CronModule,
+    DashboardModule
   ],
   controllers: [AppController],
   providers: [AppService],

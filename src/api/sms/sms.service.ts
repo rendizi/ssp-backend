@@ -104,7 +104,6 @@ export class SmsService {
         const response = await axios.get(url,  { 
             headers 
         });
-        console.log(response.headers)
             const responseCookies = response.headers['set-cookie'] || [];
             const extractedCookies = responseCookies.map(cookie => cookie.split(';')[0]);
             return {params, cookies: extractedCookies };
