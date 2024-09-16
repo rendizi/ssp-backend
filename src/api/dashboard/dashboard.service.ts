@@ -88,8 +88,8 @@ export class DashboardService {
         const startOfPrevYear = new Date(year - 1, 8, 1); // September 1st of the previous year
         const endOfPrevYear = new Date(year, 4, 31); // May 31st of the current year
     
-        const evaluations = await this.evaluationModel.find({ 
-            year: { $in: [year, year - 1, year + 1] } 
+        const evaluations = await this.evaluationModel.find({
+            year: { $in: [year, year - 1, year + 1] }
         }).exec();
     
         const evaluationIds = evaluations.map(evaluation => evaluation._id);
@@ -99,7 +99,7 @@ export class DashboardService {
             writtenTime: { $gte: startOfPrevYear, $lte: endOfCurrentYear }
         }).populate({
             path: 'evaluation',
-            select: 'year term'
+            select: 'maxScore'
         }).exec();
     
         const calculateMonthlyGpa = (records: any[], startDate: Date, endDate: Date) => {
@@ -108,8 +108,9 @@ export class DashboardService {
                 const writtenTime = new Date(record.writtenTime);
                 if (writtenTime >= startDate && writtenTime <= endDate) {
                     const month = writtenTime.getMonth() + 1;
+                    const percentageScore = (record.score / record.evaluation.maxScore) * 100;
                     if (!monthGpaMap.has(month)) monthGpaMap.set(month, []);
-                    monthGpaMap.get(month)?.push(record.score);
+                    monthGpaMap.get(month)?.push(percentageScore);
                 }
             });
     
@@ -127,6 +128,7 @@ export class DashboardService {
             currentYear: currentYearMonthlyGpa
         };
     }
+    
     
 
     async getParallelAnalytics(firstYear: number, secondYear: number, parallel: number) {
