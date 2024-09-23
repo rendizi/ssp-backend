@@ -4,14 +4,12 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install --omit=dev
+RUN npm install
 
 COPY . .
 
 RUN npm run build
 
 EXPOSE 4000
-
-ENV NODE_OPTIONS="--max-old-space-size=8192" 
 
 CMD ["npm", "run", "start:prod"]
