@@ -24,6 +24,10 @@ export class SmsController{
         const { login, password } = body;
         const response = await this.smsService.loginToSms(login, password, city, cookies);
 
+        if (response.status_code){
+            res.status(response.status_code).send(response)
+        }
+
         // let user = await this.usersService.findByLogin(login);
         // if (!user) {
         //     user = await this.usersService.createUser(login, password);
