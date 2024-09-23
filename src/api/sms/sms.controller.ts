@@ -32,6 +32,7 @@ export class SmsController{
         // if (!user) {
         //     user = await this.usersService.createUser(login, password);
         // }
+        //
 
         const token = jwt.sign(
             { cookies: response.cookies, city: city },
