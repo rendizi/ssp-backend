@@ -30,7 +30,7 @@ export class SmsController{
         }
 
         const token = jwt.sign(
-            { cookies: response.cookies, city: city, userId: user._id },
+            { cookies: response.cookies, city: city },
             SECRET_KEY,
             { expiresIn: '1w' }
         );
