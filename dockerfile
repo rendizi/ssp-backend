@@ -14,4 +14,4 @@ EXPOSE 4000
 
 ENV NODE_OPTIONS="--max-old-space-size=8192" 
 
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:dev"]
