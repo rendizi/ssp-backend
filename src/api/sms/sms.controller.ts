@@ -24,10 +24,10 @@ export class SmsController{
         const { login, password } = body;
         const response = await this.smsService.loginToSms(login, password, city, cookies);
 
-        let user = await this.usersService.findByLogin(login);
-        if (!user) {
-            user = await this.usersService.createUser(login, password);
-        }
+        // let user = await this.usersService.findByLogin(login);
+        // if (!user) {
+        //     user = await this.usersService.createUser(login, password);
+        // }
 
         const token = jwt.sign(
             { cookies: response.cookies, city: city },
