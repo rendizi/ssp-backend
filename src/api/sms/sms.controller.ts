@@ -24,8 +24,6 @@ export class SmsController{
         const { login, password } = body;
         const response = await this.smsService.loginToSms(login, password, city, cookies);
 
-        console.log(response)
-
         if (response.status_code){
             res.status(response.status_code).send(response)
         }

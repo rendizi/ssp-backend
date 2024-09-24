@@ -40,7 +40,7 @@ export class SmsService {
             twoFactorAuthCode: '',
             application2FACode: ''
         };
-        const response = await axios.post(url, new URLSearchParams(params).toString(), { 
+        const response = await proxy.post(url, new URLSearchParams(params).toString(), { 
             headers: { 'Content-Type': 'application/x-www-form-urlencoded', ...(cookies && { 'Cookie': cookies }) } 
         });
         return response.status !== 200
