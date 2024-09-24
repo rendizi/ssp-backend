@@ -11,7 +11,7 @@ const proxy = axios.create({
     proxy: {
         host: process.env.PROXY_HOST,
         port: 3128,
-        protocol: 'https'
+        protocol: 'http'
     }
 });
 
